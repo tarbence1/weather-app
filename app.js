@@ -12,6 +12,36 @@ search_button.addEventListener('click', setQueryByButton);
 const reset_button = document.querySelector('#reset-button');
 reset_button.addEventListener('click', getLocation);
 
+const chart_button = document.querySelector('#chart-button');
+chart_button.addEventListener('click', openChart);
+
+const top_chart_button = document.querySelector('#top-chart-button');
+top_chart_button.addEventListener('click', openChart);
+
+// Bar chart
+var ctx = document.getElementById("bar-chart").getContext('2d');
+var chart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Feels like", "Minimum temperature", "Maximum temperature"],
+        datasets: [{
+            label: "Temperature details (°c)",
+            backgroundColor: ["#3e95cd", "#8e5ea2", "#3cba9f"],
+            data: []
+        }]
+    },
+    options: {
+        legend: {
+            display: false
+        },
+        title: {
+            display: true,
+            fontColor: '#fff',
+            text: 'Temperature details (°C)'
+        }
+    }
+});
+
 // Get current location when the DOM is ready
 function getLocation() {
     $.ajax({
@@ -51,6 +81,7 @@ function getResults(query) {
 
 // Display the results
 function displayResults(weather) {
+    console.log(weather);
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
 
@@ -122,8 +153,15 @@ function displayResults(weather) {
 
     let minmax = document.querySelector('.min-max');
     minmax.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-}
 
+    // Update chart data
+    function updateChart() {
+        chart.data.datasets[0].data = [weather.main.feels_like, weather.main.temp_min, weather.main.temp_max];
+        chart.update();
+    }
+    updateChart();
+
+}
 // Display the current date
 function dateBuilder(d) {
     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
@@ -135,4 +173,16 @@ function dateBuilder(d) {
     let year = d.getFullYear();
 
     return `${day} ${date} ${month} ${year}`;
+}
+
+
+function openChart() {
+    let chart = document.getElementById('chart');
+    if (chart.style.display == "block") {
+        console.log("itt");
+        chart.style.display = "none";
+    } else {
+        chart.style.display = "block";
+        console.log("masik");
+    }
 }

@@ -29,6 +29,9 @@
                 </section>
                 <section class="current">
                     <div class="temp">-<span>°C</span></div>
+                    <button type="button" id="chart-button">
+                        <i class="far fa-chart-bar"></i>
+                    </button>
                     <div class="weather">-</div>
                     <div class="min-max">-</div>
                 </section>
@@ -38,6 +41,10 @@
 
     <button type="button" id="reset-button">
         <i class="fas fa-sync-alt"></i>
+    </button>
+
+    <button type="button" id="top-chart-button">
+        <i class="far fa-chart-bar"></i>
     </button>
 
     <div class="search-lady">
@@ -266,10 +273,16 @@
             </svg>
     </div>
 
+    <div id="chart">
+        <canvas id="bar-chart" width="200" height="100"></canvas>
+    </div>
+
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
     <script src="placeholderTypewriter.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.1.1/dist/chart.min.js"></script>
     <script src="app.js"></script>
+
 
     <script>
         var placeholderText = [
@@ -286,6 +299,9 @@
         $('#search').placeholderTypewriter({
             text: placeholderText
         });
+    </script>
+
+    <script>
     </script>
 </body>
 
