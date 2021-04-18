@@ -14,7 +14,7 @@
 <body onload="getLocation()">
     <div class="wrap">
         <header>
-            <input type="text" class="search-box" placeholder="Search for a city...">
+            <input type="text" class="search-box" name="search" id="search">
             <button id="search-button" type="button">
                 <i class="fas fa-search fa-flip-horizontal"></i>
             </button>
@@ -268,7 +268,25 @@
 
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+    <script src="placeholderTypewriter.js"></script>
     <script src="app.js"></script>
+
+    <script>
+        var placeholderText = [
+            "Amsterdam",
+            "Paris",
+            "Berlin",
+            "London",
+            "New York",
+            "San Francisco",
+            "Budapest",
+            "Nagymaros",
+        ];
+
+        $('#search').placeholderTypewriter({
+            text: placeholderText
+        });
+    </script>
 </body>
 
 </html>
