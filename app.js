@@ -81,7 +81,6 @@ function getResults(query) {
 
 // Display the results
 function displayResults(weather) {
-    console.log(weather);
     let city = document.querySelector('.location .city');
     city.innerText = `${weather.name}, ${weather.sys.country}`;
 
@@ -146,8 +145,6 @@ function displayResults(weather) {
             clouds_weather.style.display = "block";
             storm_weather.style.display = "block";
             break;
-        default:
-            text = "I have never heard of that fruit...";
     }
 
 
@@ -178,11 +175,5 @@ function dateBuilder(d) {
 
 function openChart() {
     let chart = document.getElementById('chart');
-    if (chart.style.display == "block") {
-        console.log("itt");
-        chart.style.display = "none";
-    } else {
-        chart.style.display = "block";
-        console.log("masik");
-    }
+    chart.style.display == "block" ? chart.style.display = "none" : chart.style.display = "block";
 }

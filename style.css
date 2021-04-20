@@ -396,3 +396,10 @@ main {
         transform: rotateZ(360deg);
     }
 }
+
+@media screen and (max-width: 465px) {
+    #top-chart-button {
+        top: 10px;
+        right: 45px;
+    }
+}
